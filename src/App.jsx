@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Question1 from "./questions/Question1";
-import Question2 from "./questions/Question2";
-import Question3 from "./questions/Question3";
+import Question1 from './questions/Question1';
+import Question2 from './questions/Question2';
+import Question3 from './questions/Question3';
 
 function App() {
   const questions = [
@@ -34,7 +34,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className='App'>
       <div style={{margin: 20}}>
         {questions.map((question, index) => <button onClick={() => setCurrentQuestionIndex(index)}>{question}</button>)}
       </div>

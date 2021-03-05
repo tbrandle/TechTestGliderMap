@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-export default function Question2 (props) {
+const Question2 = (props) => {
+
   // Situation: Create a search bar that filters items in the list as the user types.
   // Feel free to refactor as you feel necessary.
 
@@ -22,7 +23,7 @@ export default function Question2 (props) {
 
   return (
     <div>
-      <input value={searchText} onChange={handleSearchTextChange}/>
+      <input value={searchText} onChange={setSearchText}/>
       {shoppingList.map(item => {
         return (
           <div>
@@ -33,3 +34,5 @@ export default function Question2 (props) {
     </div>
   )
 }
+
+export default Question2

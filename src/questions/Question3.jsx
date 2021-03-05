@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
-import Endpoints from "../util/Endpoints";
-import GliderMap from "../components/GliderMap";
+import React, {useEffect, useState} from 'react';
+import endpoints from '../util/endpoints';
+import GliderMap from '../components/GliderMap';
 
 export default function Question3 (props) {
   //Displaying real-time metrics for our devices' locations and statuses is a critical component of our reporting strategy.
@@ -26,7 +26,7 @@ export default function Question3 (props) {
   }, [])
 
   const fetchStops = () => {
-    fetch(Endpoints.STOPS)
+    fetch(endpoints.STOPS)
       .then(res => res.json())
       .then(newStops => {
         if (newStops.stops.length) {
@@ -37,7 +37,7 @@ export default function Question3 (props) {
   }
 
   const fetchStopInfo = (stop) => {
-    fetch(Endpoints.STOP_INFO + '/' + stop.id)
+    fetch(endpoints.STOP_INFO + '/' + stop.id)
       .then(res => res.json())
       .then(stopInfo => {
         //do something
