@@ -37,9 +37,7 @@ const Question1 = (props) => {
         body: body.value ,
         userId: userId.value
       }
-    const response = await api.post('posts', params)
-    console.log('response', response)
-    
+    const response = await api.post('posts', params)    
   }
 
   return (
