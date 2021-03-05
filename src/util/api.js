@@ -12,8 +12,8 @@ class Api {
     eventEmitter.emit('notify', { message, type: 'success' })
   }
 
-  error (e) {
-    eventEmitter.emit('notify', { message: e, type: 'error' })
+  error (message) {
+    eventEmitter.emit('notify', { message, type: 'error' })
   }
 
   async post(model, params) {
@@ -24,10 +24,10 @@ class Api {
         body: JSON.stringify(params),
         headers: this.headers,
       })
-      this.success('Successful post request!', response)
+      this.success('Successful post request!')
       return response.json()
     } catch (e) {
-      this.error('Post request failed.', e)
+      this.error('Post request failed.')
     }
   }
 }

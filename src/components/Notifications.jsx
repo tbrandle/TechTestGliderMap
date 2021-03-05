@@ -2,9 +2,7 @@ import { useEffect } from 'react'
 import React, { useState } from 'react'
 import eventEmitter from '../util/eventEmitter'
 
-const Notifications = (props) => {
-  eventEmitter.on('notify', notify)
-  
+const Notifications = (props) => {  
   const [message, setMessage] = useState('')
   const [type, setType] = useState('')
   
@@ -12,6 +10,7 @@ const Notifications = (props) => {
     setMessage(message)
     setType(type)
   }
+  eventEmitter.on('notify', notify)
 
   useEffect(() => {
     setTimeout(() => {
