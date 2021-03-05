@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import Notifications from './components/Notifications'
 import Question1 from './questions/Question1';
 import Question2 from './questions/Question2';
 import Question3 from './questions/Question3';
@@ -35,6 +36,7 @@ function App() {
 
   return (
     <div className='App'>
+      <Notifications />
       <div style={{margin: 20}}>
         {questions.map((question, index) => <button onClick={() => setCurrentQuestionIndex(index)}>{question}</button>)}
       </div>
