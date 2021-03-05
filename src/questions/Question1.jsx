@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Input from '../components/Input'
+import Input, { useInput } from '../components/Input'
 import Select from '../components/Select'
-import useInput from '../hooks/useInput'
 import Api from '../util/api'
 
 const api = new Api({ 

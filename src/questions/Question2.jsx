@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Input, { useInput } from '../components/Input'
+
 
 const Question2 = (props) => {
 
   // Situation: Create a search bar that filters items in the list as the user types.
   // Feel free to refactor as you feel necessary.
 
-  const [searchText, setSearchText] = useState('');
+  const searchText = useInput('')
 
   const shoppingList = [
     'Peanut Butter',
@@ -15,7 +17,7 @@ const Question2 = (props) => {
     'Eggs',
     'Quiche',
     'Cheese'
-  ];
+  ]
 
   const handleSearchTextChange = () => {
 
@@ -23,7 +25,7 @@ const Question2 = (props) => {
 
   return (
     <div>
-      <input value={searchText} onChange={setSearchText}/>
+      <Input {...searchText}/>
       {shoppingList.map(item => {
         return (
           <div>
