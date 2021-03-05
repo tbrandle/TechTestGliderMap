@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Input from '../components/Input'
 import Select from '../components/Select'
 import useInput from '../hooks/useInput'
+import Api from '../util/api'
+
+const api = new Api({ 
+  baseUrl: 'https://jsonplaceholder.typicode.com', 
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  }
+})
 
 const Question1 = (props) => {
 
@@ -12,8 +20,9 @@ const Question1 = (props) => {
 
   const title = useInput('')
   const body = useInput('')
+  //TODO: this wont capture initial value of a select
   const userId = useInput()
-  
+
   const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
@@ -22,20 +31,15 @@ const Question1 = (props) => {
     }
   }, [title]);
 
-  const handleSubmit = () => {
-    fetch('https://jsonplaceholder.typicode.com/posts',{
-      method: 'post',
-      data: JSON.toString({
+  const handleSubmit = async () => {
+    const params = {
         title: title.value ,
         body: body.value ,
-        userId
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then(response => response.json())
-      .then(json => console.log(json))
+        userId: userId.value
+      }
+    const response = await api.post('posts', params)
+    console.log('response', response)
+    
   }
 
   return (
@@ -53,7 +57,7 @@ const Question1 = (props) => {
         {errorMessage}
       </div>
 
-      <button onClick={handleSubmit()} style={{margin: 10}}>Submit</button>
+      <button onClick={() => handleSubmit()} style={{margin: 10}}>Submit</button>
     </div>
 
   )
