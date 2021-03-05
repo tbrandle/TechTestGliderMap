@@ -4,10 +4,7 @@ import Select from '../components/Select'
 import Api from '../util/api'
 
 const api = new Api({ 
-  baseUrl: 'https://jsonplaceholder.typicode.com', 
-  headers: {
-    'Content-type': 'application/json; charset=UTF-8',
-  }
+  baseUrl: 'https://jsonplaceholder.typicode.com'
 })
 
 const Question1 = (props) => {

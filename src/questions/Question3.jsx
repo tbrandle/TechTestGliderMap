@@ -1,8 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import endpoints from '../util/endpoints';
+import Api from '../util/api'
 import GliderMap from '../components/GliderMap';
 
-export default function Question3 (props) {
+const api = new Api({ 
+  baseUrl: 'https://hidden-refuge-13674.herokuapp.com/https://belfast-glider-api-server.herokuapp.com'
+})
+
+const Question3 = (props) => {
   //Displaying real-time metrics for our devices' locations and statuses is a critical component of our reporting strategy.
   // This allows us to provide accurate, live data to our clients.
   //
@@ -25,24 +30,18 @@ export default function Question3 (props) {
     fetchStops();
   }, [])
 
-  const fetchStops = () => {
-    fetch(endpoints.STOPS)
-      .then(res => res.json())
-      .then(newStops => {
-        if (newStops.stops.length) {
-          setStops(newStops.stops);
-        }
-      })
-      .catch(e => console.log(e))
+  const fetchStops = async () => {
+    const newStops = await api.get(endpoints.STOPS)    
+    if (newStops.stops.length) {
+      setStops(newStops.stops);
+    }
   }
 
-  const fetchStopInfo = (stop) => {
-    fetch(endpoints.STOP_INFO + '/' + stop.id)
-      .then(res => res.json())
-      .then(stopInfo => {
-        //do something
-      })
-      .catch(e => console.log(e))
+  const fetchStopInfo = async (stop) => {
+    const stopInfo = await api.get(`${endpoints.STOP_INFO}/${stop.id}`)
+      // .then(stopInfo => {
+      //   //do something
+      // })
   }
 
   return (
@@ -57,3 +56,5 @@ export default function Question3 (props) {
     </div>
   );
 }
+
+export default Question3
