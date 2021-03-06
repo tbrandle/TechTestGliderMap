@@ -23,6 +23,7 @@ const Question3 = (props) => {
   // This file contains the map component and two endpoints to obtain Stop data.
 
   const [stops, setStops] = useState([])
+  const [stopInfo, setStopInfo] = useState()
 
   useEffect(() => {
     fetchStops()
@@ -35,16 +36,10 @@ const Question3 = (props) => {
     }
   }
 
-  const fetchStopInfo = async (stop) => {
-    const stopInfo = await api.get(`${GliderAPI.STOP_INFO}/${stop.id}`)
-    // .then(stopInfo => {
-    //   //do something
-    // })
-  }
-
   return (
     <div>
       <GliderMap
+        api={api}
         stops={stops}
         googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyBkHRuOEvL8BERtTR0oIB-mw8e0QkMVA2U&v=3.exp&libraries=geometry,drawing,places'
         loadingElement={<div style={{ height: '100%' }} />}
