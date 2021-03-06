@@ -13,8 +13,8 @@ const Notifications = (props) => {
   }
 
   useEffect(() => {
-    notifier.on('notify', notify)
-    return () => notifier.off()
+    const listener = notifier.on('notify', notify)
+    return () => listener.off()
   }, [])
 
   useEffect(() => {
