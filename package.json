@@ -11,13 +11,17 @@
     "react-dom": "^17.0.1",
     "react-google-maps": "^9.4.5",
     "react-scripts": "4.0.0",
+    "snazzy": "^9.0.0",
+    "standard": "^16.0.3",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "standard --verbose | snazzy",
+    "lint:fix": "standard --fix | snazzy"
   },
   "eslintConfig": {
     "extends": [
