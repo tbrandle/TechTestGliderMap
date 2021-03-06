@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Api from '../../util/api'
-import GliderMap from '../GliderMap'
+import storage from '../../util/storage'
+import { GliderMap, StopInfo } from '../organisms'
 import { GliderAPI } from '../../util/ApiConstants'
 
 const Question3 = (props) => {
@@ -25,27 +26,39 @@ const Question3 = (props) => {
   const [stops, setStops] = useState([])
   const [stopInfo, setStopInfo] = useState()
 
+  const fetchStops = async () => {
+    if(storage.getSession(GliderAPI.STOPS)) {
+      setStops(storage.getSession(GliderAPI.STOPS))
+    } else {
+      const newStops = await api.get(GliderAPI.STOPS)
+      if (newStops.stops) {
+        setStops(newStops.stops)
+        storage.setSession(GliderAPI.STOPS, newStops.stops)
+      }
+    }
+  }
+
   useEffect(() => {
     fetchStops()
   }, [])
 
-  const fetchStops = async () => {
-    const newStops = await api.get(GliderAPI.STOPS)
-    if (newStops.stops) {
-      setStops(newStops.stops)
-    }
+  const fetchStopInfo = async (id) => {
+    const response = await api.get(`${GliderAPI.STOP_INFO}/${id}`)
+    setStopInfo(response)
+    console.log('stopInfo', response)
   }
 
   return (
     <div>
       <GliderMap
-        api={api}
+        fetchStopInfo={fetchStopInfo}
         stops={stops}
         googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyBkHRuOEvL8BERtTR0oIB-mw8e0QkMVA2U&v=3.exp&libraries=geometry,drawing,places'
         loadingElement={<div style={{ height: '100%' }} />}
-        containerElement={<div style={{ height: '800px', margin: 20 }} />}
+        containerElement={<div style={{ height: '600px', margin: 20 }} />}
         mapElement={<div style={{ height: '100%' }} />}
       />
+      <StopInfo stopInfo={stopInfo} />
     </div>
   )
 }
