@@ -1,4 +1,4 @@
-import eventEmitter from './eventEmitter'
+import notifier from './notifier'
 
 const defaultHeaders = {
     'Content-type': 'application/json; charset=UTF-8',
@@ -12,11 +12,11 @@ class Api {
   }
 
   success (message) {
-    eventEmitter.emit('notify', { message, type: 'success' })
+    notifier.emit('notify', { message, type: 'success' })
   }
 
   error (message) {
-    eventEmitter.emit('notify', { message, type: 'error' })
+    notifier.emit('notify', { message, type: 'error' })
   }
 
   async post(model, params) {
@@ -30,6 +30,8 @@ class Api {
       this.success('Successful post request!')
       return response.json()
     } catch (e) {
+      console.log('e', e)
+
       this.error('Post request failed.')
     }
   }
