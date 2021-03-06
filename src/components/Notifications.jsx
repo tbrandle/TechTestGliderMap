@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import '../styles/Notifications.scss'
 
 import notifier from '../util/notifier'
 
@@ -20,12 +21,14 @@ const Notifications = (props) => {
     setTimeout(() => {
       setMessage('')
       setType('')
-    }, 2500)
+    }, 4000)
   }, [message])
 
   return (
-    <div id='notifier' className={type}>
-      {message}
+    <div className='notifications' >
+      <div className={type}>
+        {message}
+      </div>
     </div>
   )
 }
