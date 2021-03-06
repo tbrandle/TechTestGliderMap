@@ -1,0 +1,12 @@
+.stopInfoSection {
+  width: 97%;
+  border-collapse: collapse;
+  margin: 12px;
+  * {
+    border: 2px black solid;
+  }
+
+  .tableBody {
+    overflow: scroll;
+  }
+}
