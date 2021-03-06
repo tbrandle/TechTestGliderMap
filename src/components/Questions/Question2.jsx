@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SearchFilter from '../components/SearchFilter'
+import { SearchFilter } from '../../components/atoms'
 
 
 const Question2 = (props) => {

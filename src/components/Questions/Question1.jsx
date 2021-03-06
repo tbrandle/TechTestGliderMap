@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import Input, { useInput } from '../components/Input'
-import Select from '../components/Select'
-import Api from '../util/api'
+import { TypicodeAPI } from '../../util/ApiConstants';
+import { useInput } from '../../hooks'
+import { Input, Select } from '../../components/atoms'
+import Api from '../../util/api'
+
 
 const api = new Api({ 
-  baseUrl: 'https://jsonplaceholder.typicode.com'
+  baseUrl: TypicodeAPI.BASE_URL
 })
-
 const Question1 = (props) => {
+
+  const options = ['1337', '1234', '1066']
 
   // Situation: The TestForm component was written by a junior developer who needs some help getting it to function.
   // Please modify the TestForm component such that it will correctly use hooks to validate and post to the endpoint.
@@ -16,8 +19,7 @@ const Question1 = (props) => {
 
   const title = useInput('')
   const body = useInput('')
-  //TODO: this wont capture initial value of a select
-  const userId = useInput()
+  const [userId, setUserId] = useState(options[0])
 
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -31,9 +33,9 @@ const Question1 = (props) => {
     const params = {
         title: title.value ,
         body: body.value ,
-        userId: userId.value
+        userId: userId
       }
-    const response = await api.post('posts', params)    
+    await api.post(TypicodeAPI.POST, params)    
   }
 
   return (
@@ -41,11 +43,12 @@ const Question1 = (props) => {
       <Input label={'Title'} {...title}/>
       <Input label={'Body'} {...body}/>
 
-      <Select label={'UserId'} {...userId}>
-        <option>1337</option>
-        <option>1234</option>
-        <option>1066</option>
-      </Select>
+      <Select 
+        label={'UserId'} 
+        options={options} 
+        value={userId} 
+        onChange={setUserId}
+      />
 
       <div>
         {errorMessage}

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import endpoints from '../util/endpoints';
-import Api from '../util/api'
-import GliderMap from '../components/GliderMap';
+import Api from '../../util/api'
+import GliderMap from '../GliderMap';
+import { GliderAPI } from '../../util/ApiConstants';
 
-const api = new Api({ 
-  baseUrl: 'https://hidden-refuge-13674.herokuapp.com/https://belfast-glider-api-server.herokuapp.com'
-})
 
 const Question3 = (props) => {
+  const api = new Api({ 
+    baseUrl: GliderAPI.BASE_URL
+  })
   //Displaying real-time metrics for our devices' locations and statuses is a critical component of our reporting strategy.
   // This allows us to provide accurate, live data to our clients.
   //
@@ -31,14 +31,14 @@ const Question3 = (props) => {
   }, [])
 
   const fetchStops = async () => {
-    const newStops = await api.get(endpoints.STOPS)    
-    if (newStops.stops.length) {
+    const newStops = await api.get(GliderAPI.STOPS)    
+    if (newStops.stops) {
       setStops(newStops.stops);
     }
   }
 
   const fetchStopInfo = async (stop) => {
-    const stopInfo = await api.get(`${endpoints.STOP_INFO}/${stop.id}`)
+    const stopInfo = await api.get(`${GliderAPI.STOP_INFO}/${stop.id}`)
       // .then(stopInfo => {
       //   //do something
       // })
