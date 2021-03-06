@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState } from 'react'
+import './App.css'
 import Notifications from './components/Notifications'
 import {
   Question1,
@@ -7,31 +7,31 @@ import {
   Question3
 } from './components/Questions'
 
-function App() {
+function App () {
   const questions = [
     'Question1',
     'Question2',
-    'Question3',
+    'Question3'
   ]
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
 
   const renderQuestion = () => {
     switch (currentQuestionIndex) {
       case 0:
         return (
-          <Question1/>
+          <Question1 />
         )
       case 1:
         return (
-          <Question2/>
+          <Question2 />
         )
       case 2:
         return (
-          <Question3/>
+          <Question3 />
         )
       default:
         return (
-          <Question1/>
+          <Question1 />
         )
     }
   }
@@ -39,14 +39,14 @@ function App() {
   return (
     <div className='App'>
       <Notifications />
-      <div style={{margin: 20}}>
-        {questions.map((question, index) => <button onClick={() => setCurrentQuestionIndex(index)}>{question}</button>)}
+      <div style={{ margin: 20 }}>
+        {questions.map((question, index) => <button key={index} onClick={() => setCurrentQuestionIndex(index)}>{question}</button>)}
       </div>
-      <div style={{justifyContent: 'center', alignItems: 'center'}}>
+      <div style={{ justifyContent: 'center', alignItems: 'center' }}>
         {renderQuestion()}
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

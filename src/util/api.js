@@ -1,11 +1,11 @@
 import notifier from './notifier'
 
 const defaultHeaders = {
-    'Content-type': 'application/json; charset=UTF-8',
-  }
+  'Content-type': 'application/json; charset=UTF-8'
+}
 
 class Api {
-  constructor(config) {
+  constructor (config) {
     this.baseUrl = config.baseUrl
     this.headers = Object.assign(defaultHeaders, config.headers)
     this.fetch = window.fetch.bind(window)
@@ -19,13 +19,13 @@ class Api {
     notifier.emit('notify', { message, type: 'error' })
   }
 
-  async post(model, params) {
-    console.log(`[Calling Post Route]`, params)
+  async post (model, params) {
+    console.log('[Calling Post Route]', params)
     try {
-      const response = await this.fetch(`${this.baseUrl}/${model}`,{
+      const response = await this.fetch(`${this.baseUrl}/${model}`, {
         method: 'POST',
         body: JSON.stringify(params),
-        headers: this.headers,
+        headers: this.headers
       })
       this.success('Successful post request!')
       return response.json()
@@ -38,9 +38,9 @@ class Api {
 
   async get (model) {
     try {
-      const response = await this.fetch(`${this.baseUrl}/${model}`,{
+      const response = await this.fetch(`${this.baseUrl}/${model}`, {
         method: 'GET',
-        headers: this.headers,
+        headers: this.headers
       })
       return response.json()
     } catch (e) {

@@ -9,5 +9,3 @@ export const GliderAPI = {
   STOPS: 'list',
   STOP_INFO: 'stop'
 }
-
-

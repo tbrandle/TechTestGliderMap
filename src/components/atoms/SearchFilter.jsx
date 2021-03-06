@@ -3,7 +3,6 @@ import Input from './Input'
 import { useInput } from '../../hooks'
 
 const SearchFilter = ({ list }) => {
- 
   const { value: searchText, onChange } = useInput('')
   const [filteredList, setFilteredList] = useState(list)
 
@@ -15,7 +14,7 @@ const SearchFilter = ({ list }) => {
 
   return (
     <div>
-      <Input value={searchText} onChange={handleSearchTextChange}/>
+      <Input value={searchText} onChange={handleSearchTextChange} />
       {filteredList.map((item, i) => {
         return (
           <div key={i}>

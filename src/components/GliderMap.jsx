@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { withGoogleMap, withScriptjs, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import React, { useState, useEffect } from 'react'
+import { withGoogleMap, withScriptjs, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 
 const BELFAST_DEFAULT_LOCATION = {
   lat: 54.607868,
@@ -14,10 +14,10 @@ const GliderMap = withScriptjs(withGoogleMap((props) => {
     >
       <Marker
         position={BELFAST_DEFAULT_LOCATION}
-        label={'Hi!'}
+        label='Hi!'
       />
     </GoogleMap>
   )
 }))
 
-export default GliderMap;
+export default GliderMap

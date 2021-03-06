@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { TypicodeAPI } from '../../util/ApiConstants';
+import React, { useState, useEffect } from 'react'
+import { TypicodeAPI } from '../../util/ApiConstants'
 import { useInput } from '../../hooks'
 import { Input, Select } from '../../components/atoms'
 import Api from '../../util/api'
 
-
-const api = new Api({ 
+const api = new Api({
   baseUrl: TypicodeAPI.BASE_URL
 })
 const Question1 = (props) => {
-
   const options = ['1337', '1234', '1066']
 
   // Situation: The TestForm component was written by a junior developer who needs some help getting it to function.
@@ -27,26 +25,26 @@ const Question1 = (props) => {
     if (title.length < 0) {
       setErrorMessage('You need to enter a title!')
     }
-  }, [title]);
+  }, [title])
 
   const handleSubmit = async () => {
     const params = {
-        title: title.value ,
-        body: body.value ,
-        userId: userId
-      }
-    await api.post(TypicodeAPI.POST, params)    
+      title: title.value,
+      body: body.value,
+      userId: userId
+    }
+    await api.post(TypicodeAPI.POST, params)
   }
 
   return (
     <div>
-      <Input label={'Title'} {...title}/>
-      <Input label={'Body'} {...body}/>
+      <Input label='Title' {...title} />
+      <Input label='Body' {...body} />
 
-      <Select 
-        label={'UserId'} 
-        options={options} 
-        value={userId} 
+      <Select
+        label='UserId'
+        options={options}
+        value={userId}
         onChange={setUserId}
       />
 
@@ -54,7 +52,7 @@ const Question1 = (props) => {
         {errorMessage}
       </div>
 
-      <button onClick={() => handleSubmit()} style={{margin: 10}}>Submit</button>
+      <button onClick={() => handleSubmit()} style={{ margin: 10 }}>Submit</button>
     </div>
 
   )

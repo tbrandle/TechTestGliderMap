@@ -1,11 +1,11 @@
-import { useEffect } from 'react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
 import notifier from '../util/notifier'
 
-const Notifications = (props) => {  
+const Notifications = (props) => {
   const [message, setMessage] = useState('')
   const [type, setType] = useState('')
-  
+
   const notify = ({ message, type }) => {
     setMessage(message)
     setType(type)
@@ -14,7 +14,7 @@ const Notifications = (props) => {
   useEffect(() => {
     notifier.on('notify', notify)
     return () => notifier.off()
-  },[])
+  }, [])
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,11 +24,10 @@ const Notifications = (props) => {
   }, [message])
 
   return (
-    <div id={'notifier'} className={type}>
+    <div id='notifier' className={type}>
       {message}
     </div>
   )
-
 }
 
 export default Notifications

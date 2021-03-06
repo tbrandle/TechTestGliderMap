@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import Api from '../../util/api'
-import GliderMap from '../GliderMap';
-import { GliderAPI } from '../../util/ApiConstants';
-
+import GliderMap from '../GliderMap'
+import { GliderAPI } from '../../util/ApiConstants'
 
 const Question3 = (props) => {
-  const api = new Api({ 
+  const api = new Api({
     baseUrl: GliderAPI.BASE_URL
   })
-  //Displaying real-time metrics for our devices' locations and statuses is a critical component of our reporting strategy.
+  // Displaying real-time metrics for our devices' locations and statuses is a critical component of our reporting strategy.
   // This allows us to provide accurate, live data to our clients.
   //
   // Using Translink's JourneyPlanner API, implement an MVP in React for a real-time reporting dashboard.
@@ -23,38 +22,37 @@ const Question3 = (props) => {
   //
   // This file contains the map component and two endpoints to obtain Stop data.
 
-
-  const [stops, setStops] = useState([]);
+  const [stops, setStops] = useState([])
 
   useEffect(() => {
-    fetchStops();
+    fetchStops()
   }, [])
 
   const fetchStops = async () => {
-    const newStops = await api.get(GliderAPI.STOPS)    
+    const newStops = await api.get(GliderAPI.STOPS)
     if (newStops.stops) {
-      setStops(newStops.stops);
+      setStops(newStops.stops)
     }
   }
 
   const fetchStopInfo = async (stop) => {
     const stopInfo = await api.get(`${GliderAPI.STOP_INFO}/${stop.id}`)
-      // .then(stopInfo => {
-      //   //do something
-      // })
+    // .then(stopInfo => {
+    //   //do something
+    // })
   }
 
   return (
     <div>
       <GliderMap
         stops={stops}
-        googleMapURL={'https://maps.googleapis.com/maps/api/js?key=AIzaSyBkHRuOEvL8BERtTR0oIB-mw8e0QkMVA2U&v=3.exp&libraries=geometry,drawing,places'}
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `800px`, margin: 20 }} />}
-        mapElement={<div style={{ height: `100%` }} />}
+        googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyBkHRuOEvL8BERtTR0oIB-mw8e0QkMVA2U&v=3.exp&libraries=geometry,drawing,places'
+        loadingElement={<div style={{ height: '100%' }} />}
+        containerElement={<div style={{ height: '800px', margin: 20 }} />}
+        mapElement={<div style={{ height: '100%' }} />}
       />
     </div>
-  );
+  )
 }
 
 export default Question3

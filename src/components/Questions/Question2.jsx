@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import { SearchFilter } from '../../components/atoms'
 
-
 const Question2 = (props) => {
-
   // Situation: Create a search bar that filters items in the list as the user types.
   // Feel free to refactor as you feel necessary.
 
@@ -19,7 +17,7 @@ const Question2 = (props) => {
 
   return (
     <div>
-      <SearchFilter list={shoppingList}/>
+      <SearchFilter list={shoppingList} />
     </div>
   )
 }

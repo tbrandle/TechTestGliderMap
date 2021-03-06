@@ -1,5 +1,4 @@
-import useInput from './useInput';
-
+import useInput from './useInput'
 
 export {
   useInput

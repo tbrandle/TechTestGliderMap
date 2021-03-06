@@ -1,7 +1,7 @@
-import Input from './Input';
-import Button from './Button';
-import Select from './Select';
-import SearchFilter from './SearchFilter';
+import Input from './Input'
+import Button from './Button'
+import Select from './Select'
+import SearchFilter from './SearchFilter'
 
 export {
   Input,
