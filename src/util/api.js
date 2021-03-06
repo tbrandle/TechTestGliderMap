@@ -11,7 +11,8 @@ class Api {
     this.fetch = window.fetch.bind(window)
   }
 
-  success (message) {
+  success (message, resp) {
+    console.log('inside success', resp)
     notifier.emit('notify', { message, type: 'success' })
   }
 
@@ -27,11 +28,14 @@ class Api {
         body: JSON.stringify(params),
         headers: this.headers
       })
-      this.success('Successful post request!')
+
+      if (response.ok) {
+        this.success('Successful post request!', response)
+      } else {
+        this.error('Post request failed.')
+      }
       return response.json()
     } catch (e) {
-      console.log('e', e)
-
       this.error('Post request failed.')
     }
   }
