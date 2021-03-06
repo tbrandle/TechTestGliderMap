@@ -27,7 +27,7 @@ const Question3 = (props) => {
   const [stopInfo, setStopInfo] = useState()
 
   const fetchStops = async () => {
-    if(storage.getSession(GliderAPI.STOPS)) {
+    if (storage.getSession(GliderAPI.STOPS)) {
       setStops(storage.getSession(GliderAPI.STOPS))
     } else {
       const newStops = await api.get(GliderAPI.STOPS)

@@ -13,11 +13,11 @@ const StopInfo = ({ stopInfo = {} }) => {
             <th colspan={rowHeaders.length}>{stop.name} Bus Stop</th>
           </tr>
           <tr>
-          {rowHeaders.map((colHeader, i) => {
-            return (
-              <th key={i} colspan='1'>{colHeader}</th>
+            {rowHeaders.map((colHeader, i) => {
+              return (
+                <th key={i} colspan='1'>{colHeader}</th>
               )
-          })}
+            })}
           </tr>
         </thead>
         <tbody>

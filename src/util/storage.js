@@ -1,5 +1,4 @@
 
-
 class Storage {
   setSession (key, value) {
     const flatVal = typeof value === 'object' ? JSON.stringify(value) : value
@@ -11,12 +10,12 @@ class Storage {
 
     try {
       return JSON.parse(storedVal)
-    } catch(e) {
+    } catch (e) {
       return storedVal
     }
   }
 
-  clearSession() {
+  clearSession () {
     sessionStorage.clear()
   }
 }
