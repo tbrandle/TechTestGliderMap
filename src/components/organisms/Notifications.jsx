@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import '../styles/Notifications.scss'
+import '../../styles/Notifications.scss'
 
-import notifier from '../util/notifier'
+import notifier from '../../util/notifier'
 
 const Notifications = (props) => {
   const [message, setMessage] = useState('')
@@ -13,8 +13,8 @@ const Notifications = (props) => {
   }
 
   useEffect(() => {
-    const listener = notifier.on('notify', notify)
-    return () => listener.off()
+    notifier.on('notify', notify)
+    return () => notifier.removeListener('notify', notify)
   }, [])
 
   useEffect(() => {
