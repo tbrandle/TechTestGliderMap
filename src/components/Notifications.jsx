@@ -25,7 +25,7 @@ const Notifications = (props) => {
   }, [message])
 
   return (
-    <div className='notifications' >
+    <div className='notifications'>
       <div className={type}>
         {message}
       </div>
