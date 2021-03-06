@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './styles/App.scss'
-import Notifications from './components/Notifications'
+import { Notifications } from './components/organisms'
 import { Button } from './components/atoms'
 import {
   Question1,

@@ -27,13 +27,14 @@ const Question1 = (props) => {
     }
   }, [title])
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     const params = {
       title: title.value,
       body: body.value,
       userId: userId
     }
-    await api.post(TypicodeAPI.POST, params)
+
+    api.post(TypicodeAPI.POST, params)
   }
 
   return (

@@ -41,6 +41,8 @@ class Api {
   }
 
   async get (model) {
+    console.log('[Calling GET Route]', model)
+
     try {
       const response = await this.fetch(`${this.baseUrl}/${model}`, {
         method: 'GET',
