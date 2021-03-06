@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import './App.css'
+import './styles/App.scss'
 import Notifications from './components/Notifications'
+import { Button } from './components/atoms'
 import {
   Question1,
   Question2,
@@ -40,7 +41,7 @@ function App () {
     <div className='App'>
       <Notifications />
       <div style={{ margin: 20 }}>
-        {questions.map((question, index) => <button key={index} onClick={() => setCurrentQuestionIndex(index)}>{question}</button>)}
+        {questions.map((question, index) => <Button key={index} onClick={() => setCurrentQuestionIndex(index)}>{question}</Button>)}
       </div>
       <div style={{ justifyContent: 'center', alignItems: 'center' }}>
         {renderQuestion()}

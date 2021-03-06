@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { TypicodeAPI } from '../../util/ApiConstants'
 import { useInput } from '../../hooks'
-import { Input, Select } from '../../components/atoms'
+import { Input, Select, Button } from '../../components/atoms'
 import Api from '../../util/api'
 
 const api = new Api({
@@ -52,7 +52,7 @@ const Question1 = (props) => {
         {errorMessage}
       </div>
 
-      <button onClick={() => handleSubmit()} style={{ margin: 10 }}>Submit</button>
+      <Button onClick={() => handleSubmit()} style={{ margin: 10 }}>Submit</Button>
     </div>
 
   )
