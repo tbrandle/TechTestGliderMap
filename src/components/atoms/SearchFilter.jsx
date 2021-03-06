@@ -7,7 +7,7 @@ const SearchFilter = ({ list }) => {
   const [filteredList, setFilteredList] = useState(list)
 
   const handleSearchTextChange = (e) => {
-    const filteredList = list.filter((item) => item.match(e.target.value))
+    const filteredList = list.filter((item) => item.toLowerCase().match(e.target.value.toLowerCase()))
     setFilteredList(filteredList)
     onChange(e)
   }
