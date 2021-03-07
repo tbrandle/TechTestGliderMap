@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Api from '../../util/api'
 import storage from '../../util/storage'
 import { GliderMap, StopInfo } from '../organisms'
+import { Button } from '../atoms'
 import { GliderAPI } from '../../util/ApiConstants'
 
 const Question3 = (props) => {
@@ -24,28 +25,48 @@ const Question3 = (props) => {
   // This file contains the map component and two endpoints to obtain Stop data.
 
   const [stops, setStops] = useState([])
-  const [stopInfo, setStopInfo] = useState()
+  const [stopInfo, setStopInfo] = useState({})
+  const [gliderRoutes, setGliderRoutes] = useState({ g1: [], g2: [], allRoutes: [] })
+
+  const reduceRoutes = (stops) => {
+      const reducedRoutes = stops.reduce((obj, stop) => {   
+        if (stop.g1) {
+          obj.g1 = [...obj.g1, stop]
+        }
+        if (stop.g2) {
+          obj.g2 = [...obj.g2, stop]
+        }
+        return obj
+      }, { g1: [], g2: [] })
+    return Object.assign(reducedRoutes, { allRoutes: stops })
+  }
 
   const fetchStops = async () => {
-    if (storage.getSession(GliderAPI.STOPS)) {
-      setStops(storage.getSession(GliderAPI.STOPS))
-    } else {
-      const newStops = await api.get(GliderAPI.STOPS)
-      if (newStops.stops) {
-        setStops(newStops.stops)
-        storage.setSession(GliderAPI.STOPS, newStops.stops)
-      }
-    }
+    const { stops } = await api.get(GliderAPI.STOPS)
+    let routes = reduceRoutes(stops)
+    setGliderRoutes(routes)
+    setStops(routes.allRoutes)
+    storage.setSession('gliderRoutes', routes)
+    return stops
   }
 
   useEffect(() => {
-    fetchStops()
+    const cachedRoutes = storage.getSession('gliderRoutes')
+    if(cachedRoutes){
+      setStops(cachedRoutes.allRoutes)
+      setGliderRoutes(cachedRoutes)
+    } else {
+      fetchStops()
+    }
   }, [])
 
   const fetchStopInfo = async (id) => {
     const response = await api.get(`${GliderAPI.STOP_INFO}/${id}`)
-    setStopInfo(response)
-    console.log('stopInfo', response)
+    setStopInfo({ title: response.stop.name, data: response.departures })
+  }
+
+  const viewRouteData = (route) => {
+    setStopInfo({title: `${route} Route`, data: gliderRoutes[route]})
   }
 
   return (
@@ -58,6 +79,9 @@ const Question3 = (props) => {
         containerElement={<div style={{ height: '600px', margin: 20 }} />}
         mapElement={<div style={{ height: '100%' }} />}
       />
+      <Button onClick={() => viewRouteData('g1')}>G1 Route</Button>
+      <Button onClick={() => viewRouteData('g2')}>G2 Route</Button>
+      <Button onClick={() => viewRouteData('allRoutes')}>All Routes</Button>
       <StopInfo stopInfo={stopInfo} />
     </div>
   )

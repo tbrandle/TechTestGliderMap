@@ -1,34 +1,40 @@
 import React from 'react'
 import moment from 'moment'
+import { titleize } from '@bowtie/utils'
+import { isDate } from '../../util/helpers'
 import '../../styles/StopInfo.scss'
 
 const StopInfo = ({ stopInfo = {} }) => {
-  const { departures = [], stop } = stopInfo
-  const rowHeaders = departures[0] ? Object.keys(departures[0]) : []
-  return stopInfo.stop
+  const { data = [], title } = stopInfo
+  const rowHeaders = data[0] ? Object.keys(data[0]) : []
+
+  return title
     ? (
       <table className='stopInfoSection'>
         <thead className='tableHeader'>
           <tr>
-            <th colspan={rowHeaders.length}>{stop.name} Bus Stop</th>
+            <th colspan={rowHeaders.length}>{title}</th>
           </tr>
           <tr>
             {rowHeaders.map((colHeader, i) => {
               return (
-                <th key={i} colspan='1'>{colHeader}</th>
+                <th key={i} colSpan='1'>{titleize(colHeader, '_')}</th>
               )
             })}
           </tr>
         </thead>
         <tbody>
-          {departures.map(({ from, to, min_until: minUntil, scheduled, estimated = '' }) => {
+          {data.map((row) => {
+            
             return (
               <tr>
-                <td>{from}</td>
-                <td>{to}</td>
-                <td>{minUntil}</td>
-                <td>{moment(scheduled).format('hh:mm:ss')}</td>
-                <td>{estimated ? moment(estimated).format('hh:mm:ss') : 'N/A'}</td>
+                { Object.values(row).map((val) => {
+                  if(typeof val === null) {
+                  return (<td>{val}</td>)
+
+                  }
+                  return (<td>{isDate(val) ? moment(val).format('hh:mm:ss') : val }</td>)
+                })}
               </tr>
             )
           })}
