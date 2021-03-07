@@ -7,22 +7,23 @@ const Notifications = (props) => {
   const [message, setMessage] = useState('')
   const [type, setType] = useState('')
 
+  const clearMessage = () => {
+    setMessage('')
+    setType('')
+  }
   const notify = ({ message, type }) => {
     setMessage(message)
     setType(type)
+
+    setTimeout(() => {
+      clearMessage()
+    }, 4000)
   }
 
   useEffect(() => {
     notifier.on('notify', notify)
     return () => notifier.removeListener('notify', notify)
   }, [])
-
-  useEffect(() => {
-    setTimeout(() => {
-      setMessage('')
-      setType('')
-    }, 4000)
-  }, [message])
 
   return (
     <div className='notifications'>

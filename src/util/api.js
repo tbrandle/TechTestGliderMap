@@ -12,7 +12,6 @@ class Api {
   }
 
   success (message, resp) {
-    console.log('inside success', resp)
     notifier.emit('notify', { message, type: 'success' })
   }
 
