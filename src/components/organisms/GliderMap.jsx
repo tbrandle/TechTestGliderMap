@@ -1,5 +1,6 @@
-import React from 'react'
-import { withGoogleMap, withScriptjs, GoogleMap, Marker } from 'react-google-maps'
+import React, { useState } from 'react'
+import { withGoogleMap, withScriptjs, GoogleMap } from 'react-google-maps'
+import MarkerWithWindow from './MarkerWithWindow'
 import busStop from '../../assets/busStop.png'
 
 const BELFAST_DEFAULT_LOCATION = {
@@ -8,6 +9,8 @@ const BELFAST_DEFAULT_LOCATION = {
 }
 
 const GliderMap = withScriptjs(withGoogleMap(({ stops, fetchStopInfo }) => {
+  const [currentMarkerId, setMarkerId] = useState()
+
   return (
     <GoogleMap
       defaultZoom={11}
@@ -15,13 +18,18 @@ const GliderMap = withScriptjs(withGoogleMap(({ stops, fetchStopInfo }) => {
     >
       {
         stops.map(({ lat, lng, id, name }) => (
-          <Marker
+          <MarkerWithWindow
             key={id}
+            showInfoWindow={currentMarkerId === id}
             icon={busStop}
-            position={{ lat, lng }}
+            position={{ lat: Number(lat), lng: Number(lng) }}
             label={name}
-            onClick={() => fetchStopInfo(id)}
+            onClick={() => {
+              setMarkerId(id)
+              fetchStopInfo(id)
+            }}
           />
+
         ))
       }
     </GoogleMap>
