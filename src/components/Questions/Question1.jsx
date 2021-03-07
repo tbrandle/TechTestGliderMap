@@ -3,6 +3,7 @@ import { TypicodeAPI } from '../../util/ApiConstants'
 import { useInput } from '../../hooks'
 import { Input, Select, Button } from '../../components/atoms'
 import Api from '../../util/api'
+import { validateObject } from '../../util/helpers'
 
 const api = new Api({
   baseUrl: TypicodeAPI.BASE_URL
@@ -19,14 +20,6 @@ const Question1 = (props) => {
   const body = useInput('')
   const [userId, setUserId] = useState(options[0])
 
-  const [errorMessage, setErrorMessage] = useState('')
-
-  useEffect(() => {
-    if (title.length < 0) {
-      setErrorMessage('You need to enter a title!')
-    }
-  }, [title])
-
   const handleSubmit = () => {
     const params = {
       title: title.value,
@@ -34,6 +27,11 @@ const Question1 = (props) => {
       userId: userId
     }
 
+    const invalidKey = validateObject(params)
+    if(invalidKey) { 
+      return 
+    } 
+    
     api.post(TypicodeAPI.POST, params)
   }
 
@@ -48,10 +46,6 @@ const Question1 = (props) => {
         value={userId}
         onChange={setUserId}
       />
-
-      <div>
-        {errorMessage}
-      </div>
 
       <Button onClick={() => handleSubmit()} style={{ margin: 10 }}>Submit</Button>
     </div>
