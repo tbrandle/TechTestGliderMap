@@ -1,9 +1,9 @@
 /* globals jest expect it describe beforeAll */
 import { render, fireEvent } from '@testing-library/react'
-import api from './util/api'
-import { Question1 } from './components/Questions'
+import api from '../util/api'
+import { Question1 } from '../components/Questions'
 
-jest.mock('./util/api')
+jest.mock('../util/api')
 
 describe('Question1', () => {
   const mockPost = jest.fn()
