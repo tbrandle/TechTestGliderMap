@@ -31,7 +31,7 @@ const StopInfo = ({ stopInfo = {} }) => {
                   if (val === null) {
                     return (<td key={i}>{val}</td>)
                   }
-                  return (<td key={i}>{isDate(val) ? moment(val).format('hh:mm:ss') : val}</td>)
+                  return (<td key={i}>{isDate(val) ? moment(val).format('hh:mm:ss') : val.toString()}</td>)
                 })}
               </tr>
             )
@@ -39,7 +39,7 @@ const StopInfo = ({ stopInfo = {} }) => {
         </tbody>
       </table>
       )
-    : <div>Select Stop</div>
+    : <div>Select a stop from the map or a route.</div>
 }
 
 export default StopInfo

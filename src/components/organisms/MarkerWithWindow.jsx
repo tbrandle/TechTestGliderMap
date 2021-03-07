@@ -1,7 +1,7 @@
 import React from 'react'
 import { Marker, InfoWindow } from 'react-google-maps'
 
-const MarkerWithWindow = ({ showInfoWindow, ...rest }) => {
+const MarkerWithWindow = ({ showInfoWindow, label, ...rest }) => {
   return (
     <Marker
       {...rest}
@@ -10,7 +10,7 @@ const MarkerWithWindow = ({ showInfoWindow, ...rest }) => {
         <InfoWindow
           position={{ lat: rest.lat, lng: rest.lng }}
         >
-          <div>{rest.label}</div>
+          <div>{label}</div>
         </InfoWindow>
       )}
     </Marker>
