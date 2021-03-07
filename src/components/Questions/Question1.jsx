@@ -47,7 +47,7 @@ const Question1 = (props) => {
         onChange={setUserId}
       />
 
-      <Button onClick={() => handleSubmit()} style={{ margin: 10 }}>Submit</Button>
+      <Button onClick={() => handleSubmit()}>Submit</Button>
     </div>
 
   )

@@ -40,10 +40,10 @@ function App () {
   return (
     <div className='App'>
       <Notifications />
-      <div style={{ margin: 20 }}>
+      <div className='button-container'>
         {questions.map((question, index) => <Button key={index} onClick={() => setCurrentQuestionIndex(index)}>{question}</Button>)}
       </div>
-      <div style={{ justifyContent: 'center', alignItems: 'center' }}>
+      <div className='question-container'>
         {renderQuestion()}
       </div>
     </div>
