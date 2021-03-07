@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { TypicodeAPI } from '../../util/ApiConstants'
 import { useInput } from '../../hooks'
 import { Input, Select, Button } from '../../components/atoms'
@@ -28,10 +28,10 @@ const Question1 = (props) => {
     }
 
     const invalidKey = validateObject(params)
-    if(invalidKey) { 
-      return 
-    } 
-    
+    if (invalidKey) {
+      return
+    }
+
     api.post(TypicodeAPI.POST, params)
   }
 

@@ -24,16 +24,14 @@ const StopInfo = ({ stopInfo = {} }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((row) => {
-            
+          {data.map((row, i) => {
             return (
-              <tr>
-                { Object.values(row).map((val) => {
-                  if(typeof val === null) {
-                  return (<td>{val}</td>)
-
+              <tr key={i}>
+                {Object.values(row).map((val, i) => {
+                  if (val === null) {
+                    return (<td key={i}>{val}</td>)
                   }
-                  return (<td>{isDate(val) ? moment(val).format('hh:mm:ss') : val }</td>)
+                  return (<td key={i}>{isDate(val) ? moment(val).format('hh:mm:ss') : val}</td>)
                 })}
               </tr>
             )

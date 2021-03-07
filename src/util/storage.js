@@ -1,4 +1,4 @@
-
+/* global sessionStorage */
 class Storage {
   setSession (key, value) {
     const flatVal = typeof value === 'object' ? JSON.stringify(value) : value

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { SearchFilter } from '../../components/atoms'
 
 const Question2 = (props) => {

@@ -29,21 +29,21 @@ const Question3 = (props) => {
   const [gliderRoutes, setGliderRoutes] = useState({ g1: [], g2: [], allRoutes: [] })
 
   const reduceRoutes = (stops) => {
-      const reducedRoutes = stops.reduce((obj, stop) => {   
-        if (stop.g1) {
-          obj.g1 = [...obj.g1, stop]
-        }
-        if (stop.g2) {
-          obj.g2 = [...obj.g2, stop]
-        }
-        return obj
-      }, { g1: [], g2: [] })
+    const reducedRoutes = stops.reduce((obj, stop) => {
+      if (stop.g1) {
+        obj.g1 = [...obj.g1, stop]
+      }
+      if (stop.g2) {
+        obj.g2 = [...obj.g2, stop]
+      }
+      return obj
+    }, { g1: [], g2: [] })
     return Object.assign(reducedRoutes, { allRoutes: stops })
   }
 
   const fetchStops = async () => {
     const { stops } = await api.get(GliderAPI.STOPS)
-    let routes = reduceRoutes(stops)
+    const routes = reduceRoutes(stops)
     setGliderRoutes(routes)
     setStops(routes.allRoutes)
     storage.setSession('gliderRoutes', routes)
@@ -52,7 +52,7 @@ const Question3 = (props) => {
 
   useEffect(() => {
     const cachedRoutes = storage.getSession('gliderRoutes')
-    if(cachedRoutes){
+    if (cachedRoutes) {
       setStops(cachedRoutes.allRoutes)
       setGliderRoutes(cachedRoutes)
     } else {
@@ -66,7 +66,7 @@ const Question3 = (props) => {
   }
 
   const viewRouteData = (route) => {
-    setStopInfo({title: `${route} Route`, data: gliderRoutes[route]})
+    setStopInfo({ title: `${route} Route`, data: gliderRoutes[route] })
   }
 
   return (
