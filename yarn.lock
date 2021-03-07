@@ -1015,6 +1015,13 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@bowtie/utils@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@bowtie/utils/-/utils-0.3.3.tgz#37f1984a6f77a71f8b133ccab724f3c9e7a34a56"
+  integrity sha512-DSfzft6AHzg8hpjQoG3Ug+Zqo33QEnmZYKwbPy7RAgNX7qv9B6/lHz0iKHqu46SufTuGmj+mCtmpC/Qbhfy3iw==
+  dependencies:
+    escape-string-regexp "^1.0.5"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"
